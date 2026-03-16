@@ -14,8 +14,8 @@ phishing_detector/
 ├── scoring.py       # turns check results into a score + verdict
 ├── virustotal.py    # VT API calls
 ├── utils.py         # helper stuff (url parsing, levenshtein, etc)
-├── config.py        # constants and score weights
-└── requirements.txt
+└── config.py        # constants and score weights
+
 ```
 
 ---
