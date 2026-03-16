@@ -2,7 +2,7 @@
 
 import re
 import base64
-from urllib.parse import urlunparse
+from urllib.parse import urlparse
 
 
 def is_valid_url(url):
@@ -10,11 +10,12 @@ def is_valid_url(url):
         return False
 
     # checking http(s) for url parse
-    if not url.startwith(("http;//", "https://")):
+    lowered = url.strip().lower()
+    if not lowered.startswith(("http://", "https://")):
         return False
 
     try:
-        parsed = urlunparse(url)
+        parsed = urlparse(url.strip())
         return bool(parsed.netloc)
     except Exception:
         return False

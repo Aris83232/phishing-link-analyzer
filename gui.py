@@ -1,4 +1,4 @@
-#the Tkinter window and all the button logic
+# gui.py - the Tkinter window and all the button logic
 
 import threading
 import tkinter as tk
@@ -11,7 +11,7 @@ from virustotal import scan_url_virustotal
 from config import APP_TITLE, APP_WIDTH, APP_HEIGHT, RESULTS_FILE
 
 
-# colour scheme - dark theme
+# colour scheme - dark theme, feels more like a security tool
 BG         = "#1e1e2e"
 PANEL      = "#2a2a3e"
 ACCENT     = "#7c3aed"
@@ -176,6 +176,7 @@ class PhishingLinkAnalyzer:
             font=("Helvetica", 8)
         ).pack()
 
+    # ---------------------------------------------------------------
 
     def _start_scan(self):
         url = self.url_entry.get().strip()
@@ -191,9 +192,9 @@ class PhishingLinkAnalyzer:
         self.scan_btn.config(state="disabled", text="Scanning...")
         self._set_status("Running checks...", colour=MUTED)
         self._clear_results()
-        self.verdict_label.config(fg=BG)  #hide old verdict
+        self.verdict_label.config(fg=BG)  # hide old verdict
 
-        #run the scan in a thread so the window stays responsive
+        # run the scan in a thread so the window stays responsive
         t = threading.Thread(target=self._run_scan, args=(url,), daemon=True)
         t.start()
 

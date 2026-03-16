@@ -2,7 +2,7 @@
 
 import re
 from utils import extract_domain, extract_tld, levenshtein_distance
-from config import SUSPICIOUS_TLDS, URL_SHORTENERS, TRUSTED_DOMAINS, MAX_URL_LENGTH, MAX_SUBDOMAINS
+from config import SUSPICIOUS_TLDS, URL_SHORTNERS, TRUSTED_DOMAINS, MAX_URL_LENGTH, MAX_SUBDOMAINS
 
 #Checking for ip addresses
 def check_ip_address(url):
@@ -49,6 +49,10 @@ def check_hyphenated_domain(url):
         main_domain = parts[-2]
         return "-" in main_domain
     return False
+
+def check_shortener(url):
+    domain = extract_domain(url)
+    return domain in URL_SHORTNERS
 
 #Typosquatting check
 def detect_typosquatting(url):
